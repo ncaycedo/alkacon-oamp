@@ -59,14 +59,7 @@ import org.opencms.util.CmsStringUtil;
 
 import java.sql.SQLException;
 import java.text.MessageFormat;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
+import java.util.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -1063,7 +1056,8 @@ public class CmsCommentsAccess extends CmsJspLoginBean {
     private void initConfig(PageContext context, HttpServletRequest req, HttpServletResponse res) {
 
         if (LOG.isDebugEnabled()) {
-            for (Map.Entry<String, String[]> entry : CmsRequestUtil.createParameterMap(req.getParameterMap()).entrySet()) {
+            Set<Map.Entry<String, String[]>> parameters = CmsRequestUtil.createParameterMap(req.getParameterMap()).entrySet();
+            for (Map.Entry<String, String[]> entry : parameters) {
                 LOG.debug(Messages.get().getBundle().key(
                     Messages.LOG_INIT_PARAM_2,
                     entry.getKey(),
