@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<NewFormatters xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="opencms://system/modules/org.opencms.ade.config/schemas/formatters/new_formatter.xsd">
+  <NewFormatter language="en">
+    <NiceName><![CDATA[v8 Calendar]]></NiceName>
+    <Type><![CDATA[alkacon-v8-cal-view]]></Type>
+    <Jsp>
+      <link type="WEAK">
+        <target><![CDATA[/system/modules/com.alkacon.opencms.v8.calendar/formatters/fullcalendar.jsp]]></target>
+        <uuid>35d047fd-3c72-11e7-9793-0242ac11002b</uuid>
+      </link>
+    </Jsp>
+    <Rank><![CDATA[1000]]></Rank>
+    <Match>
+      <Types>
+        <ContainerType><![CDATA[element]]></ContainerType>
+      </Types>
+    </Match>
+    <Preview>true</Preview>
+    <SearchContent>true</SearchContent>
+    <AutoEnabled>true</AutoEnabled>
+    <Detail>true</Detail>
+    <NestedContainers>false</NestedContainers>
+    <HeadIncludeCss>
+      <CssLink>
+        <link type="WEAK">
+          <target><![CDATA[/system/modules/com.alkacon.opencms.v8.calendar/resources/calendar.css]]></target>
+          <uuid>e03db19d-20be-11e1-9585-27f2fbbdf126</uuid>
+        </link>
+      </CssLink>
+      <CssLink>
+        <link type="WEAK">
+          <target><![CDATA[/system/modules/com.alkacon.opencms.v8.calendar/resources/fullcalendar.css]]></target>
+          <uuid>df6f3dee-2182-11e1-80b6-27f2fbbdf126</uuid>
+        </link>
+      </CssLink>
+    </HeadIncludeCss>
+    <HeadIncludeJs>
+      <JavascriptLink>
+        <link type="WEAK">
+          <target><![CDATA[/system/modules/com.alkacon.opencms.v8.calendar/resources/jquery.js]]></target>
+          <uuid>10d9e3d9-3c73-11e7-9793-0242ac11002b</uuid>
+        </link>
+      </JavascriptLink>
+      <JavascriptLink>
+        <link type="WEAK">
+          <target><![CDATA[/system/modules/com.alkacon.opencms.v8.calendar/resources/moment.min.js]]></target>
+          <uuid>236bc40b-3c73-11e7-9793-0242ac11002b</uuid>
+        </link>
+      </JavascriptLink>
+      <JavascriptLink>
+        <link type="WEAK">
+          <target><![CDATA[/system/modules/com.alkacon.opencms.v8.calendar/resources/fullcalendar.js]]></target>
+          <uuid>01431b37-3c73-11e7-9793-0242ac11002b</uuid>
+        </link>
+      </JavascriptLink>
+      <JavascriptLink>
+        <link type="WEAK">
+          <target><![CDATA[/system/modules/com.alkacon.opencms.v8.calendar/resources/fullcalendar-lang/de.js]]></target>
+          <uuid>c3a3cea1-3c72-11e7-9793-0242ac11002b</uuid>
+        </link>
+      </JavascriptLink>
+      <JavascriptLink>
+        <link type="WEAK">
+          <target><![CDATA[/system/modules/com.alkacon.opencms.v8.calendar/resources/fullcalendar-lang/en-gb.js]]></target>
+          <uuid>c89a6813-3c72-11e7-9793-0242ac11002b</uuid>
+        </link>
+      </JavascriptLink>
+      <JavascriptLink>
+        <link type="WEAK">
+          <target><![CDATA[/system/modules/com.alkacon.opencms.v8.calendar/resources/calendar_init.js]]></target>
+          <uuid>e7ff0ee5-3c72-11e7-9793-0242ac11002b</uuid>
+        </link>
+      </JavascriptLink>
+    </HeadIncludeJs>
+  </NewFormatter>
+</NewFormatters>

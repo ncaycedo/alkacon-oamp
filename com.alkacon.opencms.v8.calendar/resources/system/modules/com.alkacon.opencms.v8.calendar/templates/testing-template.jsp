@@ -6,19 +6,19 @@
 
 <!--DOCTYPE HTML-->
 <html>
-<head>
-    <title>Testing</title>
-    <cms:enable-ade />
+	<head>
+    	<title>Testing</title>
+    	<cms:enable-ade />
 
-</head>
+	</head>
 
-<body>
-<h1 style="text-align:center; padding-top: 1cm;">
-    TESTING
-</h1>
-<cms:container name="centercontainer" type="element" width="500" maxElements="8" detailview="true" />
+	<body>
+		<h1 style="text-align:center; padding-top: 1cm;">
+	    		TESTING
+		</h1>
+		<cms:container name="centercontainer" type="element" width="500" maxElements="8" detailview="true" />
 
-<cms:headincludes type="css" />
-<cms:headincludes type="javascript" />
-</body>
+		<cms:headincludes type="css" />
+		<cms:headincludes type="javascript" />
+	</body>
 </html>

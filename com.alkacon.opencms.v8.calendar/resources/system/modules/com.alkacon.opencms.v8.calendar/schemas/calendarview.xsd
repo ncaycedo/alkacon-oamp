@@ -1,7 +1,7 @@
 <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
 
 	<xsd:include schemaLocation="opencms://opencms-xmlcontent.xsd"/>
-	<xsd:include schemaLocation="opencms://system/modules/com.alkacon.opencms.v8.calendar/schemas/calendarviewresconf.xsd"/>
+	<xsd:include schemaLocation="opencms://system/modules/com.alkacon.opencms.v8.calendar/schemas/nested/calendarviewresconf.xsd"/>
 
 	<xsd:element name="AlkaconV8CalendarViews" type="OpenCmsAlkaconV8CalendarViews"/>
 
@@ -33,8 +33,12 @@
 			<mappings>
 				<mapping element="Title" mapto="property:Title" />
 			</mappings>
+			<settings>
+                <setting name="boxschema" nice-name="Box Schema" default="box_schema3" type="string" widget="select" widget-config="box_schema3:Schema White|box_schema1:Schema Blue|box_schema2:Schema Red" />
+            </settings>
 			<validationrules/>
 		</xsd:appinfo>
 
 	</xsd:annotation>
+	
 </xsd:schema>

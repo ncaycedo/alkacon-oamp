@@ -158,7 +158,7 @@ modules_oamp_all.split(',').each{ moduleName ->
             ext.buildDir =  project.buildDir.toString()  +"/gwt/$moduleName"
             ext.extraDir =  project.buildDir.toString() + "/extra/$moduleName"
             ext.moduleName = moduleName
-            inputs.source sourceSets[gwtSourceSetName].java.srcDirs
+            inputs.file sourceSets[gwtSourceSetName].java.srcDirs
             inputs.dir sourceSets[gwtSourceSetName].output.resourcesDir
             outputs.dir buildDir
 

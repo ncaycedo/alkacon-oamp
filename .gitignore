@@ -5,3 +5,9 @@
 /bin
 /.gradle
 /build
+/.idea
+/target
+/caches
+/3.2.1
+/native
+/daemon

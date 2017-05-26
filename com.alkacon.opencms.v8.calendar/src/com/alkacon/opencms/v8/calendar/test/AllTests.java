@@ -65,7 +65,8 @@ public final class AllTests {
     public static Test suite() {
 
         TestSuite suite = new TestSuite("Tests for package " + CmsCalendar.class.getPackage().getName());
-        OpenCmsTestProperties.initialize(org.opencms.test.AllTests.TEST_PROPERTIES_PATH);
+//        OpenCmsTestProperties.initialize(org.opencms.test.AllTests.TEST_PROPERTIES_PATH);
+        OpenCmsTestProperties.initialize("/com/alkacon/opencms/v8/calendar/test");
         //$JUnit-BEGIN$
         suite.addTest(TestCalendarDailyView.suite());
         suite.addTest(TestCalendarDisplay.suite());
