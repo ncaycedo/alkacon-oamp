@@ -1,3 +1,7 @@
+plugins {
+    id "com.dorongold.task-tree" version "1.3"
+}
+
 apply plugin: 'java'
 apply plugin: 'maven'
 
@@ -13,7 +17,6 @@ if (!project.hasProperty('max_heap_size')){
 }
 
 repositories {
-    mavenLocal()
     if (project.hasProperty('additional_repositories')){
         additional_repositories.split(';').each{ repo ->
             maven { url repo }
@@ -22,8 +25,19 @@ repositories {
     mavenCentral()
 }
 
-configurations { compile { description = 'used to compile the modules jars'
-    } }
+configurations {
+    compile {
+        description = 'used to compile the modules jars'
+    }
+    gwtCompile {
+        description = 'used by the gwt-compiler to compile modules with gwt code'
+    }
+}
+
+configurations.all {
+    transitive = false;
+}
+
 
 // import dependencies
 apply from: 'dependencies.gradle'
@@ -153,17 +167,24 @@ modules_oamp_all.split(',').each{ moduleName ->
                 srcDirs srcGwtDir
             }
         })
-        sourceSets[gwtSourceSetName].compileClasspath=configurations.compile
+        configurations {
+            "${gwtSourceSetName}Compile" {
+                description = "gwt-compiler classpath for $gwtSourceSetName"
+
+                // Used during the javac-compilation
+                extendsFrom compile
+                // Used during the gwt-compilation
+                extendsFrom gwtCompile
+            }
+        }
+
         task "gwt_$moduleName" (dependsOn: "${gwtSourceSetName}Classes", type: JavaExec) {
             ext.buildDir =  project.buildDir.toString()  +"/gwt/$moduleName"
             ext.extraDir =  project.buildDir.toString() + "/extra/$moduleName"
             ext.moduleName = moduleName
-            inputs.file sourceSets[gwtSourceSetName].java.srcDirs
+            inputs.files sourceSets[gwtSourceSetName].java.srcDirs
             inputs.dir sourceSets[gwtSourceSetName].output.resourcesDir
             outputs.dir buildDir
-
-            // Workaround for incremental build (GRADLE-1483)
-            outputs.upToDateSpec = new org.gradle.api.specs.AndSpec()
 
             doFirst {
                 println '======================================================'
@@ -172,7 +193,7 @@ modules_oamp_all.split(',').each{ moduleName ->
                 // to clean the output directory, delete it first
                 def dir = file(buildDir)
                 if (dir.exists()){
-                    delete{ delete dir }
+                    delete dir
                 }
                 dir.mkdirs()
             }
@@ -185,7 +206,9 @@ modules_oamp_all.split(',').each{ moduleName ->
                     sourceSets[moduleName].compileClasspath,
                     sourceSets[gwtSourceSetName].java.srcDirs,
                     sourceSets[gwtSourceSetName].output.resourcesDir,
-                    sourceSets[gwtSourceSetName].output.classesDir
+                    sourceSets[gwtSourceSetName].output.classesDir,
+                    // Classpath with the gwt-compiler
+                    configurations.gwtCompile
                 ]
             }
 
@@ -245,11 +268,11 @@ tasks.findAll{ task -> task.name.startsWith('dist_')}.each{ dist_task ->
     dist_task.dependencies.each{ dep ->
         def depCompileName = 'compile'+dep.replaceAll('\\.','')+'java'
         tasks.findAll{ comp_task -> comp_task.name.toLowerCase().equals(depCompileName)}.each {comp_task ->
-            sourceSets[dist_task.moduleName].compileClasspath += files("${project.buildDir}/classes/$dep") { builtBy comp_task.name }
+            sourceSets[dist_task.moduleName].compileClasspath += comp_task.outputs.files
             if (dist_task.gwtSourceSetName!=null){
-                sourceSets["${dist_task.gwtSourceSetName}"].compileClasspath += files("${project.buildDir}/classes/$dep") { builtBy comp_task.name }
+                sourceSets["${dist_task.gwtSourceSetName}"].compileClasspath += comp_task.outputs.files
                 // we need to manipulate the classpath of the java doc task specifically
-                tasks['javadoc_'+dist_task.moduleName].classpath += files("${project.buildDir}/classes/$dep") { builtBy comp_task.name }
+                tasks['javadoc_'+dist_task.moduleName].classpath += comp_task.outputs.files
             }
         }
     }
@@ -317,4 +340,21 @@ install {
             }
         }
     }
+}
+
+// fixed issue with libraries containing both .java and .class files
+tasks.withType(JavaCompile) {
+    options.compilerArgs += ["-sourcepath", ""]
+    options.encoding='UTF-8'
+}
+tasks.withType(Javadoc) {
+    options.addStringOption("sourcepath", "")
+    if (JavaVersion.current().isJava8Compatible()) {
+        options.addStringOption("Xdoclint:none", "-quiet")
+        options.addBooleanOption("-allow-script-in-comments",true);
+    }
+}
+// all tasks implementing the CopySpec (Copy,Jar,Zip,...) should fail, in case they generate duplicate files
+tasks.withType(CopySpec){
+//    duplicatesStrategy 'fail'
 }
