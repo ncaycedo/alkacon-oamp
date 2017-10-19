@@ -61,7 +61,7 @@ import junit.framework.TestSuite;
 public class TestCalendarSerialDateProperties extends OpenCmsTestCase {
 
     /**
-     * Default JUnit constructor.<p>
+     * Constants JUnit constructor.<p>
      * 
      * @param arg0 JUnit parameters
      */

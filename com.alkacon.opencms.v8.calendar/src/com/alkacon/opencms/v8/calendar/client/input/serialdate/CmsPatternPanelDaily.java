@@ -84,7 +84,7 @@ public class CmsPatternPanelDaily extends Composite implements HasValueChangeHan
     private JSONObject m_labels;
 
     /**
-     * Default constructor to create the panel.<p>
+     * Constants constructor to create the panel.<p>
      * @param labels JSON of all labels
      */
     public CmsPatternPanelDaily(JSONObject labels) {
