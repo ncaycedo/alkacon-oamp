@@ -70,7 +70,7 @@ import junit.framework.TestSuite;
 public class TestCalendarDisplay extends OpenCmsTestCase {
 
     /**
-     * Constants JUnit constructor.<p>
+     * Default JUnit constructor.<p>
      * 
      * @param arg0 JUnit parameters
      */

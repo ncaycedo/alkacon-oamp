@@ -66,7 +66,7 @@ import junit.framework.TestSuite;
 public class TestCalendarDailyView extends OpenCmsTestCase {
 
     /**
-     * Constants JUnit constructor.<p>
+     * Default JUnit constructor.<p>
      * 
      * @param arg0 JUnit parameters
      */

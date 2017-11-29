@@ -98,7 +98,7 @@ public class CmsPatternPanelYearly extends Composite implements HasValueChangeHa
     private JSONObject m_labels;
 
     /**
-     * Constants constructor to create the panel.<p>
+     * Default constructor to create the panel.<p>
      * @param labels JSON of all needed labels
      */
     public CmsPatternPanelYearly(JSONObject labels) {

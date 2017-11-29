@@ -202,13 +202,13 @@ modules_oamp_all.split(',').each{ moduleName ->
 
             classpath {
                 [
+                    // Classpath with the gwt-compiler
+                    configurations.gwtCompile,
                     sourceSets[moduleName].java.srcDirs,
                     sourceSets[moduleName].compileClasspath,
                     sourceSets[gwtSourceSetName].java.srcDirs,
                     sourceSets[gwtSourceSetName].output.resourcesDir,
-                    sourceSets[gwtSourceSetName].output.classesDir,
-                    // Classpath with the gwt-compiler
-                    configurations.gwtCompile
+                    sourceSets[gwtSourceSetName].output.classesDir
                 ]
             }
 
@@ -224,11 +224,12 @@ modules_oamp_all.split(',').each{ moduleName ->
                         '-localWorkers',
                         '2',
                         '-style',
-                        'obfuscated',
+                        'PRETTY',
                         '-extra',
                         extraDir,
-                        '-strict'
-                        // '-draftCompile' // Speeds up compile with 25%
+                        '-strict',
+                        '-failOnError',
+                        '-draftCompile' // Speeds up compile with 25%
                     ]
 
             maxHeapSize = max_heap_size
