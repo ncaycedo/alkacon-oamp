@@ -12,3 +12,5 @@
 /native
 /daemon
 c.xml
+/*.iml
+/out
