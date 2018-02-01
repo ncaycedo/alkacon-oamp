@@ -1,6 +1,6 @@
 dependencies {
     compile group: 'javax.servlet', name: 'jsp-api', version: '2.0'
-    compile group: 'javax.servlet', name: 'servlet-api', version: '2.4'
+    compile group: 'javax.servlet', name: 'javax.servlet-api', version: '3.0.1'
     compile group: 'org.opencms', name: 'opencms-core', version: opencms_version
     compile group: 'org.opencms', name: 'opencms-setup', version: opencms_version
     compile group: 'org.opencms', name: 'opencms-components', version: '9.5.3'
@@ -43,15 +43,15 @@ dependencies {
     }
 
 
-    // used in old an v8 version of the modules
-    compile files('com.alkacon.opencms.counter/resources/system/modules/com.alkacon.opencms.counter/lib/com.alkacon.opencms.util.jar')
-    compile files('com.alkacon.opencms.feeder/resources/system/modules/com.alkacon.opencms.feeder/lib/jdom-1.0.jar')
-    compile files('com.alkacon.opencms.feeder/resources/system/modules/com.alkacon.opencms.feeder/lib/rome-1.0RC1.jar')
-    compile files('com.alkacon.opencms.formgenerator/resources/system/modules/com.alkacon.opencms.formgenerator/lib/jcaptcha-1.0-all.jar')
-    compile files('com.alkacon.opencms.htmlcleaner/resources/system/modules/com.alkacon.opencms.htmlcleaner/lib/jericho-html-3.1.jar')
-    compile files('com.alkacon.opencms.weboptimization/resources/system/modules/com.alkacon.opencms.weboptimization/lib/yuicompressor-2.4.2.jar')
-  
+    testRuntime group: 'org.junit.platform', name: 'junit-platform-launcher', version: '1.0.3'
+    testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.0.3'
+    testRuntime group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: '5.0.3'
+    testRuntime group: 'org.junit.vintage', name: 'junit-vintage-engine', version: '4.12.3'
     testCompile group: 'org.opencms', name: 'opencms-test', version: opencms_version
-    testCompile group: 'junit', name: 'junit', version: '4.11'
+    testCompile group: 'junit', name: 'junit', version: '4.12'
     testCompile group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '3.0.1'
+    testCompile group: 'org.mockito', name: 'mockito-core', version: '2.7.22'
+
+    distribution group: 'javax.servlet', name: 'jstl', version: '1.1.2'
+    distribution group: 'taglibs', name: 'standard', version: '1.1.2'
 }

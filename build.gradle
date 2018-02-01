@@ -26,8 +26,13 @@ repositories {
 }
 
 configurations {
+    distribution {
+        description = 'libraries included into the opencms distribution'
+        transitive = false
+    }
     compile {
         description = 'used to compile the modules jars'
+        extendsFrom distribution
     }
     gwtCompile {
         description = 'used by the gwt-compiler to compile modules with gwt code'

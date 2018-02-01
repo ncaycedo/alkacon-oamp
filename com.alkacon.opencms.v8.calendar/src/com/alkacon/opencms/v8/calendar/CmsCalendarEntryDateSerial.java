@@ -254,6 +254,12 @@ public class CmsCalendarEntryDateSerial extends CmsCalendarEntryDate {
         }
     }
 
+    public String getFormattedDates() {
+        String result = "";
+//          TODO: implement method.
+        return result;
+    }
+
     /**
      * Sets the occurences of a defined series interval, used for the series end type.<p>
      *
