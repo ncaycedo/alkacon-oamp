@@ -143,7 +143,7 @@ public class TestCmsCalendarEntryDateSerial {
         final String TIME_END = "15:00";
         final String FIRST_DAY = "12.05.2017";
         final String LAST_DAY = "05.10.2017";
-        final String FREQUENCY = "Biweekly";
+        final String FREQUENCY = "Every two weeks";
         final String DAYS = "Tuesdays, Thursdays";
         final String TIME_ZONE = "CEST";
 
