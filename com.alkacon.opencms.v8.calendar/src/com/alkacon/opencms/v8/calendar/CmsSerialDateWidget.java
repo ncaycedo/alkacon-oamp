@@ -121,8 +121,8 @@ public class CmsSerialDateWidget extends CmsCalendarWidget {
     /** The request parameter name for the month weekday parameter. */
     public static final String PARAM_MONTH_WEEKDAY = "sm_weekday";
 
-    /** The request parameter name for the occurences parameter. */
-    public static final String PARAM_OCCURENCES = "occurences";
+    /** The request parameter name for the ocurrences parameter. */
+    public static final String PARAM_OCURRENCES = "ocurrences";
 
     /** The request parameter name for the serialtype parameter. */
     public static final String PARAM_SERIALTYPE = "serialtype";
@@ -633,8 +633,8 @@ public class CmsSerialDateWidget extends CmsCalendarWidget {
             String endType = getParameterValue(PARAM_ENDTYPE, formParameters);
             params.put(I_CmsCalendarSerialDateOptions.CONFIG_END_TYPE, endType);
             if (String.valueOf(I_CmsCalendarSerialDateOptions.END_TYPE_TIMES).equals(endType)) {
-                params.put(I_CmsCalendarSerialDateOptions.CONFIG_OCCURENCES, getParameterValue(
-                    PARAM_OCCURENCES,
+                params.put(I_CmsCalendarSerialDateOptions.CONFIG_OCURRENCES, getParameterValue(
+                    PARAM_OCURRENCES,
                     formParameters));
             }
             String serialEndDateStr = getParameterValue(PARAM_ENDDATE, formParameters);
@@ -1070,12 +1070,12 @@ public class CmsSerialDateWidget extends CmsCalendarWidget {
         }
         resolver.addMacro("calendar.serialenddate", buildDateInput("serialenddate", widgetDialog, serialEndDate));
 
-        // set occurences
-        int occurences = 10;
+        // set ocurrences
+        int ocurrences = 10;
         if (entryDate.getSerialEndType() == I_CmsCalendarSerialDateOptions.END_TYPE_TIMES) {
-            occurences = entryDate.getOccurences();
+            ocurrences = entryDate.getOccurrences();
         }
-        resolver.addMacro(MACRO_PREFIX_PARAMVALUE + PARAM_OCCURENCES, String.valueOf(occurences));
+        resolver.addMacro(MACRO_PREFIX_PARAMVALUE + PARAM_OCURRENCES, String.valueOf(ocurrences));
 
         // set the end type radio buttons
         resolver.addMacro(MACRO_PREFIX_PARAMVALUE + PARAM_ENDTYPE + "." + entryDate.getSerialEndType(), ATTR_CHECKED);

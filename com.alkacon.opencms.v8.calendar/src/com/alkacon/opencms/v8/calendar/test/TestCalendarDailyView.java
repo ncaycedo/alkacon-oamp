@@ -227,11 +227,11 @@ public class TestCalendarDailyView extends OpenCmsTestCase {
         entry = new CmsCalendarEntry();
         data = new CmsCalendarEntryData();
         data.setTitle("Fourth serial test entry");
-        data.setDescription("Start on Mon, 08/15/2005 08:40 AM to 08:50 AM, 3 occurences.");
+        data.setDescription("Start on Mon, 08/15/2005 08:40 AM to 08:50 AM, 3 ocurrences.");
         CmsCalendarEntryDateSerial serialDate = new CmsCalendarEntryDateSerial(
             new GregorianCalendar(2005, 7, 15, 8, 40),
             new GregorianCalendar(2005, 7, 15, 8, 50));
-        serialDate.setOccurences(3);
+        serialDate.setOccurrences(3);
         serialDate.setSerialEndType(I_CmsCalendarSerialDateOptions.END_TYPE_TIMES);
 
         List weekDays = Arrays.asList(new Integer[] {new Integer(2)});
@@ -877,7 +877,7 @@ public class TestCalendarDailyView extends OpenCmsTestCase {
             23,
             40));
         serialDate.setSerialEndType(I_CmsCalendarSerialDateOptions.END_TYPE_TIMES);
-        serialDate.setOccurences(2);
+        serialDate.setOccurrences(2);
 
         serialOptions = new CmsCalendarSerialDateDailyOptions(false, 1);
 

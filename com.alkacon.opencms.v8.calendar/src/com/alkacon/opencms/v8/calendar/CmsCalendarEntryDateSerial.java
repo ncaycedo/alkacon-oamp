@@ -32,7 +32,6 @@
 
 package com.alkacon.opencms.v8.calendar;
 
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
@@ -48,8 +47,8 @@ import java.util.concurrent.TimeUnit;
  */
 public class CmsCalendarEntryDateSerial extends CmsCalendarEntryDate {
 
-    /** The occurences of a series interval. */
-    private int m_occurences;
+    /** The ocurrences of a series interval. */
+    private int m_occurrences;
 
     /** The end date of a series. */
     private Calendar m_serialEndDate;
@@ -101,7 +100,7 @@ public class CmsCalendarEntryDateSerial extends CmsCalendarEntryDate {
 
         CmsCalendarEntryDateSerial clone = new CmsCalendarEntryDateSerial(getStartDate(), getEndDate());
         clone.setSerialEndType(m_serialEndType);
-        clone.setOccurences(m_occurences);
+        clone.setOccurrences(m_occurrences);
         clone.setSerialOptions(m_serialOptions);
         return clone;
     }
@@ -132,8 +131,8 @@ public class CmsCalendarEntryDateSerial extends CmsCalendarEntryDate {
         int endType = getSerialEndType();
         values.put(I_CmsCalendarSerialDateOptions.CONFIG_END_TYPE, String.valueOf(endType));
         if (endType == I_CmsCalendarSerialDateOptions.END_TYPE_TIMES) {
-            // end type: after a number of occurences
-            values.put(I_CmsCalendarSerialDateOptions.CONFIG_OCCURENCES, String.valueOf(getOccurences()));
+            // end type: after a number of occurrences
+            values.put(I_CmsCalendarSerialDateOptions.CONFIG_OCURRENCES, String.valueOf(getOccurrences()));
         } else if (endType == I_CmsCalendarSerialDateOptions.END_TYPE_DATE) {
             // end type: ends at a specified date
             values.put(
@@ -148,13 +147,13 @@ public class CmsCalendarEntryDateSerial extends CmsCalendarEntryDate {
     }
 
     /**
-     * Returns the occurences of a defined series interval, used for the series end type.<p>
+     * Returns the occurrences of a defined series interval, used for the series end type.<p>
      *
-     * @return the occurences of a defined series interval, used for the series end type
+     * @return the occurrences of a defined series interval, used for the series end type
      */
-    public int getOccurences() {
+    public int getOccurrences() {
 
-        return m_occurences;
+        return m_occurrences;
     }
 
     /**
@@ -203,13 +202,13 @@ public class CmsCalendarEntryDateSerial extends CmsCalendarEntryDate {
      * Initializes the serial date options with the given values.<p>
      * 
      * @param endType the end type of the serial date
-     * @param occurences the number of occurences for the serial type that defines n occurences of the series
+     * @param occurrences the number of occurrences for the serial type that defines n occurrences of the series
      * @param options the serial date options
      */
-    public void initSerialDate(int endType, int occurences, I_CmsCalendarSerialDateOptions options) {
+    public void initSerialDate(int endType, int occurrences, I_CmsCalendarSerialDateOptions options) {
 
         m_serialEndType = endType;
-        m_occurences = occurences;
+        m_occurrences = occurrences;
         m_serialOptions = options;
     }
 
@@ -459,9 +458,9 @@ public class CmsCalendarEntryDateSerial extends CmsCalendarEntryDate {
      * @return the formatted version of the time boundaries of the repetition.
      */
     private String getFormattedDateBoundaries() {
-        String result = "";
+        StringBuffer result = new StringBuffer();
         // TODO: implement method.
-        return result;
+        return result.toString();
     }
 
 
@@ -478,13 +477,13 @@ public class CmsCalendarEntryDateSerial extends CmsCalendarEntryDate {
     }
 
     /**
-     * Sets the occurences of a defined series interval, used for the series end type.<p>
+     * Sets the occurrences of a defined series interval, used for the series end type.<p>
      *
-     * @param occurences the occurences of a defined series interval, used for the series end type
+     * @param occurrences the occurrences of a defined series interval, used for the series end type
      */
-    public void setOccurences(int occurences) {
+    public void setOccurrences(int occurrences) {
 
-        m_occurences = occurences;
+        m_occurrences = occurrences;
     }
 
     /**

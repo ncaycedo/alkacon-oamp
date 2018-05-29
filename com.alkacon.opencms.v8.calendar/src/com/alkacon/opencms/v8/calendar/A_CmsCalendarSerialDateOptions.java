@@ -162,14 +162,14 @@ public abstract class A_CmsCalendarSerialDateOptions implements I_CmsCalendarSer
      * @param entryDate the date information of the serial entry
      * @param runDate the Date of the current loop
      * @param viewDate the view date
-     * @param occurences the current number of occurences of the serial entry
+     * @param ocurrences the current number of ocurrences of the serial entry
      * @return true if the loop has to be interrupted, otherwise false
      */
     protected boolean checkLeaveLoop(
         CmsCalendarEntryDateSerial entryDate,
         Calendar runDate,
         CmsCalendarEntryDate viewDate,
-        int occurences) {
+        int ocurrences) {
 
         // for the series end type: end date, check end date
         if ((entryDate.getSerialEndType() == I_CmsCalendarSerialDateOptions.END_TYPE_DATE)
@@ -178,10 +178,10 @@ public abstract class A_CmsCalendarSerialDateOptions implements I_CmsCalendarSer
             return true;
         }
 
-        // for the series end type: n-times, check occurences
+        // for the series end type: n-times, check ocurrences
         if ((entryDate.getSerialEndType() == I_CmsCalendarSerialDateOptions.END_TYPE_TIMES)
-            && (occurences >= entryDate.getOccurences())) {
-            // interrupt after reaching maximum number of occurences
+            && (ocurrences >= entryDate.getOccurrences())) {
+            // interrupt after reaching maximum number of ocurrences
             return true;
         }
 

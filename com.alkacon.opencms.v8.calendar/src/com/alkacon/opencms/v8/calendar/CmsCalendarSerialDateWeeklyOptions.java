@@ -160,14 +160,14 @@ public class CmsCalendarSerialDateWeeklyOptions extends A_CmsCalendarSerialDateO
                 runDate.setTimeInMillis(viewDate.getStartDay());
             }
 
-            // occurences counter
-            int occurences = 0;
+            // ocurrences counter
+            int ocurrences = 0;
             int oldWeekNumber = runDate.get(Calendar.WEEK_OF_YEAR);
 
             while (runDate.before(viewDate.getEndDate())) {
 
                 // check conditions to leave date series loop
-                if (checkLeaveLoop(entryDate, runDate, viewDate, occurences)) {
+                if (checkLeaveLoop(entryDate, runDate, viewDate, ocurrences)) {
                     break;
                 }
                 if (matches >= maxCount) {
@@ -179,7 +179,7 @@ public class CmsCalendarSerialDateWeeklyOptions extends A_CmsCalendarSerialDateO
                 Integer runWeekDayInteger = runWeekDay;
                 if (getWeekDays().contains(runWeekDayInteger)) {
                     // the current day contains a series entry
-                    occurences++;
+                    ocurrences++;
                     long entryStart = runDate.getTimeInMillis() + entryDate.getStartTime();
                     // check if current entry is in view range
                     if ((entryStart >= viewStart) && (entryStart <= viewEnd)) {

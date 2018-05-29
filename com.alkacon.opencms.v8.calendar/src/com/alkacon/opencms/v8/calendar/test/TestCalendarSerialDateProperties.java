@@ -99,7 +99,7 @@ public class TestCalendarSerialDateProperties extends OpenCmsTestCase {
             endDate.getTimeInMillis());
         propValue.append("|").append(I_CmsCalendarSerialDateOptions.CONFIG_END_TYPE).append("=").append(
             I_CmsCalendarSerialDateOptions.END_TYPE_TIMES);
-        propValue.append("|").append(I_CmsCalendarSerialDateOptions.CONFIG_OCCURENCES).append("=").append(3);
+        propValue.append("|").append(I_CmsCalendarSerialDateOptions.CONFIG_OCURRENCES).append("=").append(3);
 
         propValue.append("|").append(I_CmsCalendarSerialDateOptions.CONFIG_TYPE).append("=").append(
             I_CmsCalendarSerialDateOptions.TYPE_WEEKLY);
@@ -183,7 +183,7 @@ public class TestCalendarSerialDateProperties extends OpenCmsTestCase {
         assertEquals(startDate.getTimeInMillis(), serialDate.getStartDate().getTimeInMillis());
         assertEquals(endDate.getTimeInMillis(), serialDate.getEndDate().getTimeInMillis());
         assertEquals(I_CmsCalendarSerialDateOptions.END_TYPE_TIMES, serialDate.getSerialEndType());
-        assertEquals(3, serialDate.getOccurences());
+        assertEquals(3, serialDate.getOccurrences());
         assertEquals(I_CmsCalendarSerialDateOptions.TYPE_WEEKLY, serialDate.getSerialOptions().getSerialType());
         CmsCalendarSerialDateWeeklyOptions options = (CmsCalendarSerialDateWeeklyOptions)serialDate.getSerialOptions();
         assertEquals(Calendar.MONDAY, ((Integer)options.getWeekDays().get(0)).intValue());
