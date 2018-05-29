@@ -172,6 +172,7 @@ public class CmsSerialDateContentBean extends CmsJspActionElement implements I_C
      * @param resource the resource to generate the serial entry from
      * @return the serial entry
      */
+    // XXX: Refactoring!
     @Override
     public CmsCalendarEntry getSerialEntryForCalendar(CmsObject cms, CmsResource resource) {
         return new CmsCalendarEntry(getCalendarEntryData(cms, resource), getSerialEntryFrom(cms, resource));
@@ -184,7 +185,7 @@ public class CmsSerialDateContentBean extends CmsJspActionElement implements I_C
      * @param resource the OpenCms serial-entry resource to generate the serial entry from
      * @return the serial entry
      * 
-     * @XXX This method signature is very unfortunate, as {@link CmsCalendarEntry} doesn't
+     * XXX: This method signature is very unfortunate, as {@link CmsCalendarEntry} doesn't
      * provide access to the specialized <tt>CmsCalendarEntryDateSerial</tt> without casting (!)
      * Ideally, this should return an instance of a new <tt>CmsCalendarEntryDateSerial</tt>
      * class that does provide an accessor to the <tt>CmsCalendarEntryDateSerial</tt>.
@@ -192,6 +193,7 @@ public class CmsSerialDateContentBean extends CmsJspActionElement implements I_C
      * on this method signature, and even a very evil cyclic dependency
      * <tt>CmsCalendarEntry-CmsCalendarEntryDate</tt> that doesn't make it easier.
      */
+    // XXX: Refactoring!
     public static CmsCalendarEntryDateSerial getSerialEntryFrom(CmsObject cms, CmsResource resource) {
 
         // first create the entry data
@@ -286,6 +288,7 @@ public class CmsSerialDateContentBean extends CmsJspActionElement implements I_C
         return serialDate;
     }
 
+    // XXX: Refactoring!
     public static CmsCalendarEntryData getCalendarEntryData(CmsObject cms, CmsResource resource) {
         CmsCalendarEntryData entryData = new CmsCalendarEntryData();
         try {

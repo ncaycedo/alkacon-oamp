@@ -32,10 +32,10 @@
 
 package com.alkacon.opencms.v8.calendar;
 
-import java.util.Calendar;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.*;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Stores the serial date information of a single calendar entry.<p>
@@ -254,10 +254,74 @@ public class CmsCalendarEntryDateSerial extends CmsCalendarEntryDate {
         }
     }
 
-    public String getFormattedDates() {
+    // XXX: Refactoring!
+
+    public String getFormattedEntryDetails() {
+        return getFormattedEventDuration() + "\n" + getFormattedEventType() + "\n" + getFormattedDateBoundaries();
+    }
+
+    /**
+     * Converts the duration of the event into a legible String that shows the start and end times for every repetition.
+     *
+     * @return the formatted version of the corresponding times.
+     */
+    private String getFormattedEventDuration() {
+        Calendar startDate = getStartDate();
+        Calendar endDate = getEndDate();
+        String pattern = "'From' HH:mm ";
+        StringBuilder result = new StringBuilder();
+        SimpleDateFormat format = new SimpleDateFormat(pattern);
+
+        result.append(format.format(startDate.getTime()));
+
+        pattern = "'to' HH:mm ";
+        if (!checkSameDate(startDate, endDate)) {
+            long diff = endDate.getTimeInMillis() - startDate.getTimeInMillis();
+            diff = TimeUnit.MILLISECONDS.toDays(diff);
+
+            pattern += "+" + diff + " ";
+        }
+        pattern += "zzz";
+        format.applyPattern(pattern);
+        result.append(format.format(endDate.getTime()));
+
+        return result.toString();
+    }
+
+    /**
+     * Converts the event type into a legible String that shows how often the event will be repeated throughout the series.
+     *
+     * @return the formatted version of the event type.
+     */
+    private String getFormattedEventType() {
         String result = "";
-//          TODO: implement method.
+        // TODO: implement method.
         return result;
+    }
+
+    /**
+     * Converts the start and end dates of the repeating event into a legible String that shows the first and final date
+     * on which the event will be repeated.
+     *
+     * @return the formatted version of the time boundaries of the repetition.
+     */
+    private String getFormattedDateBoundaries() {
+        String result = "";
+        // TODO: implement method.
+        return result;
+    }
+
+
+    /**
+     * Checks if two Date objects take place at the same date.
+     *
+     * @param firstDate first date chronologically
+     * @param secondDate second date chronologically
+     * @return true if both times take place at the same date, false otherwise
+     */
+    private boolean checkSameDate(Calendar firstDate, Calendar secondDate) {
+        return (firstDate.get(Calendar.DAY_OF_YEAR) == secondDate.get(Calendar.DAY_OF_YEAR)) &&
+                (firstDate.get(Calendar.YEAR) == secondDate.get(Calendar.YEAR));
     }
 
     /**
