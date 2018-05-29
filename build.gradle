@@ -23,6 +23,10 @@ repositories {
         }
     }
     mavenCentral()
+    jcenter()
+    maven {
+        url "http://maven.vaadin.com/vaadin-addons"
+    }
 }
 
 configurations {
@@ -43,6 +47,14 @@ configurations.all {
     transitive = false;
 }
 
+configurations.testCompile {
+    transitive = true;
+}
+
+configurations.testRuntime {
+    transitive = true;
+}
+
 
 // import dependencies
 apply from: 'dependencies.gradle'
@@ -57,6 +69,22 @@ modules_oamp_all.split(',').each{ moduleName ->
         resources.srcDir "${moduleName}/src"
     });
     sourceSets[moduleName].compileClasspath=configurations.compile
+    String testSourceSetName = "test" + moduleName.capitalize()
+    sourceSets.create(testSourceSetName,{
+        java {
+            srcDir "${moduleName}/test"
+        }
+        resources.srcDir "${moduleName}/test"
+        compileClasspath = sourceSets[moduleName].output
+        compileClasspath += sourceSets[moduleName].compileClasspath
+        compileClasspath += configurations.testCompile
+        runtimeClasspath = output + compileClasspath
+    });
+    String testTaskName = testSourceSetName.split('\\.').collect{it.capitalize()}.join().uncapitalize()
+    task "$testTaskName" (type: Test, group: "Verification"){
+        testClassesDir = sourceSets[testSourceSetName].output.classesDir
+        classpath = sourceSets[testSourceSetName].runtimeClasspath
+    }
     def moduleFolder = file("${projectDir}/${moduleName}")
     def srcGwtDir = file("${moduleFolder}/src")
     def manifestFile = file("${moduleFolder}/resources/manifest.xml")
