@@ -55,7 +55,7 @@ public class TestCmsCalendarEntryDateSerial {
         final String TIME_END = "18:00";
         final String FIRST_DAY = "03.03.2017";
         final String LAST_DAY = "13.03.2017";
-        final String FREQUENCY = "Everyday";
+        final String FREQUENCY = "Daily";
         final String TIME_ZONE = "CET";
 
         when(cmsProperty.getValueMap(new HashMap<String, String>())).thenReturn(buildMap("test_daily_event_repeating_everyday"));
@@ -76,7 +76,7 @@ public class TestCmsCalendarEntryDateSerial {
         final String TIME_BEGIN = "09:00";
         final String TIME_END = "13:00";
         final String FIRST_DAY = "12.02.2017";
-        final String FREQUENCY = "Everyday";
+        final String FREQUENCY = "Daily";
         final String TIME_ZONE = "CET";
 
         when(cmsProperty.getValueMap(new HashMap<String, String>())).thenReturn(buildMap("test_daily_event_repeating_everyday_no_end"));
@@ -118,7 +118,7 @@ public class TestCmsCalendarEntryDateSerial {
         final String TIME_BEGIN = "14:00";
         final String TIME_END = "14:00 +1";
         final String FIRST_DAY = "12.03.2017";
-        final String LAST_DAY = "29.03.2017";
+        final String OCCURRENCES = "8";
         final String FREQUENCY = "Weekly";
         final String DAYS = "Mondays, Wednesdays, Fridays";
         final String TIME_ZONE = "CET";
@@ -132,7 +132,7 @@ public class TestCmsCalendarEntryDateSerial {
         assertThat(formattedEntryDetails, containsString(TIME_END));
         assertThat(formattedEntryDetails, containsString(TIME_ZONE));
         assertThat(formattedEntryDetails, containsString(FIRST_DAY));
-        assertThat(formattedEntryDetails, containsString(LAST_DAY));
+        assertThat(formattedEntryDetails, containsString(OCCURRENCES));
         assertThat(formattedEntryDetails, containsString(FREQUENCY));
         assertThat(formattedEntryDetails, containsString(DAYS));
     }
@@ -188,7 +188,7 @@ public class TestCmsCalendarEntryDateSerial {
         final String TIME_BEGIN = "17:00";
         final String TIME_END = "18:00";
         final String FIRST_DAY = "07.01.2017";
-        final String FREQUENCY = "Monthly";
+        final String FREQUENCY = "Every two months";
         final String DAYS = "2nd Monday";
         final String TIME_ZONE = "CET";
 
@@ -210,7 +210,7 @@ public class TestCmsCalendarEntryDateSerial {
         final String TIME_BEGIN = "08:00";
         final String TIME_END = "10:00";
         final String FIRST_DAY = "07.01.2017";
-        final String FREQUENCY = "yearly";
+        final String FREQUENCY = "Yearly";
         final String MONTH = "January";
         final String DAY = "7th";
         final String TIME_ZONE = "CET";
@@ -290,12 +290,12 @@ public class TestCmsCalendarEntryDateSerial {
         final String DATE_13_MAR_2017_1700H = "1489420800000";
         final String DATE_12_FEB_2017_0900H = "1486886400000";
         final String DATE_12_FEB_2017_1300H = "1486900800000";
-        final String DATE_08_APR_2017_1100H = "1501837200000";
-        final String DATE_08_APR_2017_1200H = "1501840800000";
         final String DATE_07_JAN_2017_0800H = "1483772400000";
         final String DATE_07_JAN_2017_1000H = "1483779600000";
 
         // CEST (UTC+2)
+        final String DATE_08_APR_2017_1100H = "1491642000000";
+        final String DATE_08_APR_2017_1200H = "1491645600000";
         final String DATE_26_APR_2017_1642H = "1493217720000";
         final String DATE_12_MAY_2017_1400H = "1494590400000";
         final String DATE_12_MAY_2017_1500H = "1494594000000";
