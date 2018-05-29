@@ -99,7 +99,7 @@ public class TestCalendarSerialDateProperties extends OpenCmsTestCase {
             endDate.getTimeInMillis());
         propValue.append("|").append(I_CmsCalendarSerialDateOptions.CONFIG_END_TYPE).append("=").append(
             I_CmsCalendarSerialDateOptions.END_TYPE_TIMES);
-        propValue.append("|").append(I_CmsCalendarSerialDateOptions.CONFIG_OCURRENCES).append("=").append(3);
+        propValue.append("|").append(I_CmsCalendarSerialDateOptions.CONFIG_OCCURRENCES).append("=").append(3);
 
         propValue.append("|").append(I_CmsCalendarSerialDateOptions.CONFIG_TYPE).append("=").append(
             I_CmsCalendarSerialDateOptions.TYPE_WEEKLY);

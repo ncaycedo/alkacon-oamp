@@ -101,8 +101,8 @@ public class CmsSerialDate extends Composite implements I_CmsFormWidget, I_CmsHa
     /** Configuration key name for the serial date month. */
     public static final String CONFIG_MONTH = "month";
 
-    /** Configuration key name for the serial date number of ocurrences. */
-    public static final String CONFIG_OCURRENCES = "ocurrences";
+    /** Configuration key name for the serial date number of occurrences. */
+    public static final String CONFIG_OCCURRENCES = "occurrences";
 
     /** Configuration key name for the serial date: series end date. */
     public static final String CONFIG_SERIAL_ENDDATE = "serialenddate";
@@ -934,7 +934,7 @@ public class CmsSerialDate extends Composite implements I_CmsFormWidget, I_CmsHa
                 break;
             case (END_TYPE_TIMES):
                 if (!m_endsAfter.getText().isEmpty()) {
-                    result += CONFIG_OCURRENCES + "=" + m_endsAfter.getText() + "|";
+                    result += CONFIG_OCCURRENCES + "=" + m_endsAfter.getText() + "|";
                 }
                 break;
             case (END_TYPE_DATE):
@@ -989,8 +989,8 @@ public class CmsSerialDate extends Composite implements I_CmsFormWidget, I_CmsHa
         CmsDebugLog.getInstance().printLine("Setting end type to: " + endType);
         m_groupDuration.selectButton(getDurationButtonForType(endType));
         if (endType == END_TYPE_TIMES) {
-            // end type: after a number of ocurrences
-            String occurStr = values.get(CONFIG_OCURRENCES);
+            // end type: after a number of occurrences
+            String occurStr = values.get(CONFIG_OCCURRENCES);
             CmsDebugLog.getInstance().printLine("Setting occurrences to: " + occurStr);
             m_endsAfter.setText(occurStr);
         } else if (endType == END_TYPE_DATE) {

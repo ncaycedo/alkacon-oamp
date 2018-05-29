@@ -227,7 +227,7 @@ public class TestCalendarDailyView extends OpenCmsTestCase {
         entry = new CmsCalendarEntry();
         data = new CmsCalendarEntryData();
         data.setTitle("Fourth serial test entry");
-        data.setDescription("Start on Mon, 08/15/2005 08:40 AM to 08:50 AM, 3 ocurrences.");
+        data.setDescription("Start on Mon, 08/15/2005 08:40 AM to 08:50 AM, 3 occurrences.");
         CmsCalendarEntryDateSerial serialDate = new CmsCalendarEntryDateSerial(
             new GregorianCalendar(2005, 7, 15, 8, 40),
             new GregorianCalendar(2005, 7, 15, 8, 50));

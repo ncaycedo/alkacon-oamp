@@ -59,7 +59,7 @@ import java.util.Map;
 
 /**
  * Special XML content handler that validates serial date series changes and
- * writes changed ocurrences to a configurable property value.<p>
+ * writes changed occurrences to a configurable property value.<p>
  * 
  * @author Andreas Zahner
  * 

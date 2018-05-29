@@ -47,7 +47,7 @@ import java.util.concurrent.TimeUnit;
  */
 public class CmsCalendarEntryDateSerial extends CmsCalendarEntryDate {
 
-    /** The ocurrences of a series interval. */
+    /** The occurrences of a series interval. */
     private int m_occurrences;
 
     /** The end date of a series. */
@@ -132,7 +132,7 @@ public class CmsCalendarEntryDateSerial extends CmsCalendarEntryDate {
         values.put(I_CmsCalendarSerialDateOptions.CONFIG_END_TYPE, String.valueOf(endType));
         if (endType == I_CmsCalendarSerialDateOptions.END_TYPE_TIMES) {
             // end type: after a number of occurrences
-            values.put(I_CmsCalendarSerialDateOptions.CONFIG_OCURRENCES, String.valueOf(getOccurrences()));
+            values.put(I_CmsCalendarSerialDateOptions.CONFIG_OCCURRENCES, String.valueOf(getOccurrences()));
         } else if (endType == I_CmsCalendarSerialDateOptions.END_TYPE_DATE) {
             // end type: ends at a specified date
             values.put(
@@ -294,12 +294,11 @@ public class CmsCalendarEntryDateSerial extends CmsCalendarEntryDate {
      */
     private String getFormattedEventType() {
         StringBuilder result = new StringBuilder();
-        I_CmsCalendarSerialDateOptions options = getSerialOptions();
-        int type = options.getSerialType();
-        Map<String, String> optionsMap = getConfigurationValuesAsMap();
+        Map<String, String> options = getConfigurationValuesAsMap();
+        int type = Integer.parseInt(options.get("type"));
         int offset = 0;
-        if (optionsMap.containsKey("interval")) {
-            if (optionsMap.get("interval").equals("2")) {
+        if (options.containsKey("interval")) {
+            if (options.get("interval").equals("2")) {
                 result.append("Every two s");
                 offset = result.length() - 1;
             } else {
@@ -312,7 +311,7 @@ public class CmsCalendarEntryDateSerial extends CmsCalendarEntryDate {
                 break;
             case 2:
                 result.insert(offset, "week").append(" on ");
-                String [] eventDaysArray = optionsMap.get("weekdays").split(",");
+                String [] eventDaysArray = options.get("weekdays").split(",");
                 Iterator<String> eventDays = Arrays.asList(eventDaysArray).iterator();
                 while (eventDays.hasNext()) {
                     String day = eventDays.next();
@@ -346,12 +345,12 @@ public class CmsCalendarEntryDateSerial extends CmsCalendarEntryDate {
                 break;
             case 3:
                 result.insert(offset, "month").append(" on ");
-                String dayOfMonth = optionsMap.get("dayofmonth");
+                String dayOfMonth = options.get("dayofmonth");
                 dayOfMonth = formatDayOfMonth(dayOfMonth);
                 result.append("the ");
                 result.append(dayOfMonth);
-                if (optionsMap.containsKey("weekdays")) {
-                    String day = optionsMap.get("weekdays");
+                if (options.containsKey("weekdays")) {
+                    String day = options.get("weekdays");
                     switch (day) {
                         case "1":
                             result.append(" Sunday");
@@ -379,7 +378,7 @@ public class CmsCalendarEntryDateSerial extends CmsCalendarEntryDate {
                 break;
             case 4:
                 result.append("Yearly on ");
-                String month = optionsMap.get("month");
+                String month = options.get("month");
                 switch (month) {
                     case "0":
                         result.append("January ");
@@ -418,12 +417,39 @@ public class CmsCalendarEntryDateSerial extends CmsCalendarEntryDate {
                         result.append("December ");
                         break;
                 }
-                dayOfMonth = optionsMap.get("dayofmonth");
+                dayOfMonth = options.get("dayofmonth");
                 dayOfMonth = formatDayOfMonth(dayOfMonth);
                 result.append("the ").append(dayOfMonth);
                 break;
         }
         result.replace(0, 1, result.substring(0, 1).toUpperCase());
+        return result.toString();
+    }
+
+    /**
+     * Converts the start and end dates of the repeating event into a legible String that shows the first and final date
+     * on which the event will be repeated.
+     *
+     * @return the formatted version of the time boundaries of the repetition.
+     */
+    private String getFormattedDateBoundaries() {
+        StringBuffer result = new StringBuffer();
+        Map<String, String> options = getConfigurationValuesAsMap();
+        String pattern = "dd.MM.yyyy";
+        SimpleDateFormat formatter = new SimpleDateFormat(pattern);
+
+        result.append("From ").append(formatter.format(getStartDate().getTime()));
+        switch (options.get("endtype")) {
+            case "2":
+                result.append(" until after ").append(options.get("occurrences")).append(" events.");
+                break;
+            case "3":
+                result.append(" until ").append(formatter.format(getSerialEndDate().getTime()));
+                break;
+            default:
+                result.append(" indefinitely.");
+        }
+
         return result.toString();
     }
 
@@ -450,19 +476,6 @@ public class CmsCalendarEntryDateSerial extends CmsCalendarEntryDate {
         }
         return dayOfMonth;
     }
-
-    /**
-     * Converts the start and end dates of the repeating event into a legible String that shows the first and final date
-     * on which the event will be repeated.
-     *
-     * @return the formatted version of the time boundaries of the repetition.
-     */
-    private String getFormattedDateBoundaries() {
-        StringBuffer result = new StringBuffer();
-        // TODO: implement method.
-        return result.toString();
-    }
-
 
     /**
      * Checks if two Date objects take place at the same date.
