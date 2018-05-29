@@ -13,7 +13,6 @@ import org.mockito.Mock;
 
 import java.util.*;
 
-import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
@@ -21,8 +20,6 @@ import static org.hamcrest.Matchers.*;
 
 @RunWith(MockitoJUnitRunner.class)
 public class TestCmsCalendarEntryDateSerial {
-    private final String TIME_ZONE = "CET";
-
     @Mock
     private CmsObject cmsObject;
     @Mock
@@ -59,6 +56,7 @@ public class TestCmsCalendarEntryDateSerial {
         final String FIRST_DAY = "03.03.2017";
         final String LAST_DAY = "13.03.2017";
         final String FREQUENCY = "Everyday";
+        final String TIME_ZONE = "CET";
 
         when(cmsProperty.getValueMap(new HashMap<String, String>())).thenReturn(buildMap("test_daily_event_repeating_everyday"));
 
@@ -79,6 +77,7 @@ public class TestCmsCalendarEntryDateSerial {
         final String TIME_END = "13:00";
         final String FIRST_DAY = "12.02.2017";
         final String FREQUENCY = "Everyday";
+        final String TIME_ZONE = "CET";
 
         when(cmsProperty.getValueMap(new HashMap<String, String>())).thenReturn(buildMap("test_daily_event_repeating_everyday_no_end"));
 
@@ -99,6 +98,7 @@ public class TestCmsCalendarEntryDateSerial {
         final String FIRST_DAY = "08.04.2017";
         final String LAST_DAY = "26.04.2017";
         final String FREQUENCY = "Every two days";
+        final String TIME_ZONE = "CEST";
 
         when(cmsProperty.getValueMap(new HashMap<String, String>())).thenReturn(buildMap("test_daily_event_repeating_every_two_days"));
 
@@ -121,6 +121,7 @@ public class TestCmsCalendarEntryDateSerial {
         final String LAST_DAY = "29.03.2017";
         final String FREQUENCY = "Weekly";
         final String DAYS = "Mondays, Wednesdays, Fridays";
+        final String TIME_ZONE = "CET";
 
         when(cmsProperty.getValueMap(new HashMap<String, String>())).thenReturn(buildMap("test_weekly_event_repeating_every_week_monday_wednesday_friday"));
 
@@ -144,6 +145,7 @@ public class TestCmsCalendarEntryDateSerial {
         final String LAST_DAY = "05.10.2017";
         final String FREQUENCY = "Biweekly";
         final String DAYS = "Tuesdays, Thursdays";
+        final String TIME_ZONE = "CEST";
 
         when(cmsProperty.getValueMap(new HashMap<String, String>())).thenReturn(buildMap("test_weekly_event_repeating_every_two_weeks_tuesday_thursday"));
 
@@ -166,6 +168,7 @@ public class TestCmsCalendarEntryDateSerial {
         final String FIRST_DAY = "07.01.2017";
         final String FREQUENCY = "Monthly";
         final String DAYS = "7th";
+        final String TIME_ZONE = "CET";
 
         when(cmsProperty.getValueMap(new HashMap<String, String>())).thenReturn(buildMap("test_monthly_event_on_seventh_day_every_month"));
 
@@ -187,6 +190,7 @@ public class TestCmsCalendarEntryDateSerial {
         final String FIRST_DAY = "07.01.2017";
         final String FREQUENCY = "Monthly";
         final String DAYS = "2nd Monday";
+        final String TIME_ZONE = "CET";
 
         when(cmsProperty.getValueMap(new HashMap<String, String>())).thenReturn(buildMap("test_monthly_event_at_second_monday_every_two_months"));
 
@@ -205,10 +209,11 @@ public class TestCmsCalendarEntryDateSerial {
     public void test_yearly_event_on_january_seventh() {
         final String TIME_BEGIN = "08:00";
         final String TIME_END = "10:00";
-        final String FIRST_DAY = "12.05.2017";
+        final String FIRST_DAY = "07.01.2017";
         final String FREQUENCY = "yearly";
         final String MONTH = "January";
         final String DAY = "7th";
+        final String TIME_ZONE = "CET";
 
         when(cmsProperty.getValueMap(new HashMap<String, String>())).thenReturn(buildMap("test_yearly_event_on_january_seventh"));
 
@@ -285,15 +290,15 @@ public class TestCmsCalendarEntryDateSerial {
         final String DATE_13_MAR_2017_1700H = "1489420800000";
         final String DATE_12_FEB_2017_0900H = "1486886400000";
         final String DATE_12_FEB_2017_1300H = "1486900800000";
-        final String DATE_08_APR_2017_1100H = "1491645600000";
-        final String DATE_08_APR_2017_1200H = "1491649200000";
+        final String DATE_08_APR_2017_1100H = "1501837200000";
+        final String DATE_08_APR_2017_1200H = "1501840800000";
+        final String DATE_07_JAN_2017_0800H = "1483772400000";
+        final String DATE_07_JAN_2017_1000H = "1483779600000";
 
         // CEST (UTC+2)
         final String DATE_26_APR_2017_1642H = "1493217720000";
         final String DATE_12_MAY_2017_1400H = "1494590400000";
         final String DATE_12_MAY_2017_1500H = "1494594000000";
-        final String DATE_12_MAY_2017_0800H = "1494568800000";
-        final String DATE_12_MAY_2017_1000H = "1494576000000";
         final String DATE_05_OCT_2017_1500H = "1507208400000";
 
         HashMap<String, String> values = new HashMap<>();
@@ -361,8 +366,8 @@ public class TestCmsCalendarEntryDateSerial {
                 break;
             case "test_yearly_event_on_january_seventh":
                 values.put(EVENT_ENDING_BEHAVIOUR, NO_ENDING);
-                values.put(EVENT_FIRST_DATE, DATE_12_MAY_2017_0800H);
-                values.put(EVENT_DURATION_UPPER_BOUND, DATE_12_MAY_2017_1000H);
+                values.put(EVENT_FIRST_DATE, DATE_07_JAN_2017_0800H);
+                values.put(EVENT_DURATION_UPPER_BOUND, DATE_07_JAN_2017_1000H);
                 values.put(EVENT_INTERVAL_TYPE, TYPE_YEARLY);
                 values.put(EVENT_MONTH, JANUARY);
                 values.put(EVENT_DAY_OF_MONTH, "7");
