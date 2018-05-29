@@ -294,9 +294,162 @@ public class CmsCalendarEntryDateSerial extends CmsCalendarEntryDate {
      * @return the formatted version of the event type.
      */
     private String getFormattedEventType() {
-        String result = "";
-        // TODO: implement method.
-        return result;
+        StringBuilder result = new StringBuilder();
+        I_CmsCalendarSerialDateOptions options = getSerialOptions();
+        int type = options.getSerialType();
+        Map<String, String> optionsMap = getConfigurationValuesAsMap();
+        int offset = 0;
+        if (optionsMap.containsKey("interval")) {
+            if (optionsMap.get("interval").equals("2")) {
+                result.append("Every two s");
+                offset = result.length() - 1;
+            } else {
+                result.append("ly");
+            }
+        }
+        switch (type) {
+            case 1:
+                result = offset == 0 ? result.insert(offset, "Dai") : result.insert(offset, "day");
+                break;
+            case 2:
+                result.insert(offset, "week").append(" on ");
+                String [] eventDaysArray = optionsMap.get("weekdays").split(",");
+                Iterator<String> eventDays = Arrays.asList(eventDaysArray).iterator();
+                while (eventDays.hasNext()) {
+                    String day = eventDays.next();
+                    switch (day) {
+                        case "1":
+                            result.append("Sundays");
+                            break;
+                        case "2":
+                            result.append("Mondays");
+                            break;
+                        case "3":
+                            result.append("Tuesdays");
+                            break;
+                        case "4":
+                            result.append("Wednesdays");
+                            break;
+                        case "5":
+                            result.append("Thursdays");
+                            break;
+                        case "6":
+                            result.append("Fridays");
+                            break;
+                        case "7":
+                            result.append("Saturdays");
+                            break;
+                    }
+                    if (eventDays.hasNext()) {
+                        result.append(", ");
+                    }
+                }
+                break;
+            case 3:
+                result.insert(offset, "month").append(" on ");
+                String dayOfMonth = optionsMap.get("dayofmonth");
+                dayOfMonth = formatDayOfMonth(dayOfMonth);
+                result.append("the ");
+                result.append(dayOfMonth);
+                if (optionsMap.containsKey("weekdays")) {
+                    String day = optionsMap.get("weekdays");
+                    switch (day) {
+                        case "1":
+                            result.append(" Sunday");
+                            break;
+                        case "2":
+                            result.append(" Monday");
+                            break;
+                        case "3":
+                            result.append(" Tuesday");
+                            break;
+                        case "4":
+                            result.append(" Wednesday");
+                            break;
+                        case "5":
+                            result.append(" Thursday");
+                            break;
+                        case "6":
+                            result.append(" Friday");
+                            break;
+                        case "7":
+                            result.append(" Saturday");
+                            break;
+                    }
+                }
+                break;
+            case 4:
+                result.append("Yearly on ");
+                String month = optionsMap.get("month");
+                switch (month) {
+                    case "0":
+                        result.append("January ");
+                        break;
+                    case "1":
+                        result.append("February ");
+                        break;
+                    case "2":
+                        result.append("March ");
+                        break;
+                    case "3":
+                        result.append("April ");
+                        break;
+                    case "4":
+                        result.append("May ");
+                        break;
+                    case "5":
+                        result.append("June ");
+                        break;
+                    case "6":
+                        result.append("July");
+                        break;
+                    case "7":
+                        result.append("August ");
+                        break;
+                    case "8":
+                        result.append("September ");
+                        break;
+                    case "9":
+                        result.append("October ");
+                        break;
+                    case "10":
+                        result.append("November ");
+                        break;
+                    case "11":
+                        result.append("December ");
+                        break;
+                }
+                dayOfMonth = optionsMap.get("dayofmonth");
+                dayOfMonth = formatDayOfMonth(dayOfMonth);
+                result.append("the ").append(dayOfMonth);
+                break;
+        }
+        result.replace(0, 1, result.substring(0, 1).toUpperCase());
+        return result.toString();
+    }
+
+    /**
+     * Adds the proper suffix to numerals.
+     *
+     * @param dayOfMonth a day in the form of an integer
+     * @return the day with the suffix appended
+     */
+    private String formatDayOfMonth(String dayOfMonth) {
+        switch (dayOfMonth) {
+            case "1":
+                dayOfMonth += "st";
+                break;
+            case "2":
+                dayOfMonth += "nd";
+                break;
+            case "3":
+                dayOfMonth += "rd";
+                break;
+            default:
+                dayOfMonth += "th";
+                break;
+        }
+        return dayOfMonth;
     }
 
     /**
