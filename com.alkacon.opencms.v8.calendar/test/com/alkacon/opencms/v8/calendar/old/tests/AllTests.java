@@ -29,7 +29,7 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
 
-package com.alkacon.opencms.v8.calendar.test;
+package com.alkacon.opencms.v8.calendar.old.tests;
 
 import com.alkacon.opencms.v8.calendar.CmsCalendar;
 
@@ -66,7 +66,7 @@ public final class AllTests {
 
         TestSuite suite = new TestSuite("Tests for package " + CmsCalendar.class.getPackage().getName());
 //        OpenCmsTestProperties.initialize(org.opencms.test.AllTests.TEST_PROPERTIES_PATH);
-        OpenCmsTestProperties.initialize("/com/alkacon/opencms/v8/calendar/test");
+        OpenCmsTestProperties.initialize("/com/alkacon/opencms/v8/calendar/old/tests");
         //$JUnit-BEGIN$
         suite.addTest(TestCalendarDailyView.suite());
         suite.addTest(TestCalendarDisplay.suite());

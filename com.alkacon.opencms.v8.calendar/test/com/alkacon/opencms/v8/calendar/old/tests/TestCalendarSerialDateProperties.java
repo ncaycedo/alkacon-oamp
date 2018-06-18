@@ -29,7 +29,7 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
 
-package com.alkacon.opencms.v8.calendar.test;
+package com.alkacon.opencms.v8.calendar.old.tests;
 
 import com.alkacon.opencms.v8.calendar.CmsCalendarDisplay;
 import com.alkacon.opencms.v8.calendar.CmsCalendarEntryDateSerial;

@@ -58,9 +58,10 @@ public class TestCmsCalendarEntryDateSerial {
         final String FREQUENCY = "Daily";
         final String TIME_ZONE = "CET";
 
-        when(cmsProperty.getValueMap(new HashMap<String, String>())).thenReturn(buildMap("test_daily_event_repeating_everyday"));
+        when(cmsProperty.getValueMap(new HashMap<>())).thenReturn(buildMap("test_daily_event_repeating_everyday"));
 
         entryDateSerial = CmsSerialDateContentBean.getSerialEntryFrom(cmsObject, calResource);
+        assert entryDateSerial != null;
         String formattedEntryDetails = entryDateSerial.getFormattedEntryDetails();
 
         assertThat(formattedEntryDetails, containsString(TIME_BEGIN));
@@ -79,9 +80,10 @@ public class TestCmsCalendarEntryDateSerial {
         final String FREQUENCY = "Daily";
         final String TIME_ZONE = "CET";
 
-        when(cmsProperty.getValueMap(new HashMap<String, String>())).thenReturn(buildMap("test_daily_event_repeating_everyday_no_end"));
+        when(cmsProperty.getValueMap(new HashMap<>())).thenReturn(buildMap("test_daily_event_repeating_everyday_no_end"));
 
         entryDateSerial = CmsSerialDateContentBean.getSerialEntryFrom(cmsObject, calResource);
+        assert entryDateSerial != null;
         String formattedEntryDetails = entryDateSerial.getFormattedEntryDetails();
 
         assertThat(formattedEntryDetails, containsString(TIME_BEGIN));
@@ -100,9 +102,10 @@ public class TestCmsCalendarEntryDateSerial {
         final String FREQUENCY = "Every two days";
         final String TIME_ZONE = "CEST";
 
-        when(cmsProperty.getValueMap(new HashMap<String, String>())).thenReturn(buildMap("test_daily_event_repeating_every_two_days"));
+        when(cmsProperty.getValueMap(new HashMap<>())).thenReturn(buildMap("test_daily_event_repeating_every_two_days"));
 
         entryDateSerial = CmsSerialDateContentBean.getSerialEntryFrom(cmsObject, calResource);
+        assert entryDateSerial != null;
         String formattedEntryDetails = entryDateSerial.getFormattedEntryDetails();
 
         assertThat(formattedEntryDetails, containsString(TIME_BEGIN));
@@ -123,9 +126,10 @@ public class TestCmsCalendarEntryDateSerial {
         final String DAYS = "Mondays, Wednesdays, Fridays";
         final String TIME_ZONE = "CET";
 
-        when(cmsProperty.getValueMap(new HashMap<String, String>())).thenReturn(buildMap("test_weekly_event_repeating_every_week_monday_wednesday_friday"));
+        when(cmsProperty.getValueMap(new HashMap<>())).thenReturn(buildMap("test_weekly_event_repeating_every_week_monday_wednesday_friday"));
 
         entryDateSerial = CmsSerialDateContentBean.getSerialEntryFrom(cmsObject, calResource);
+        assert entryDateSerial != null;
         String formattedEntryDetails = entryDateSerial.getFormattedEntryDetails();
 
         assertThat(formattedEntryDetails, containsString(TIME_BEGIN));
@@ -147,9 +151,10 @@ public class TestCmsCalendarEntryDateSerial {
         final String DAYS = "Tuesdays, Thursdays";
         final String TIME_ZONE = "CEST";
 
-        when(cmsProperty.getValueMap(new HashMap<String, String>())).thenReturn(buildMap("test_weekly_event_repeating_every_two_weeks_tuesday_thursday"));
+        when(cmsProperty.getValueMap(new HashMap<>())).thenReturn(buildMap("test_weekly_event_repeating_every_two_weeks_tuesday_thursday"));
 
         entryDateSerial = CmsSerialDateContentBean.getSerialEntryFrom(cmsObject, calResource);
+        assert entryDateSerial != null;
         String formattedEntryDetails = entryDateSerial.getFormattedEntryDetails();
 
         assertThat(formattedEntryDetails, containsString(TIME_BEGIN));
@@ -170,9 +175,10 @@ public class TestCmsCalendarEntryDateSerial {
         final String DAYS = "7th";
         final String TIME_ZONE = "CET";
 
-        when(cmsProperty.getValueMap(new HashMap<String, String>())).thenReturn(buildMap("test_monthly_event_on_seventh_day_every_month"));
+        when(cmsProperty.getValueMap(new HashMap<>())).thenReturn(buildMap("test_monthly_event_on_seventh_day_every_month"));
 
         entryDateSerial = CmsSerialDateContentBean.getSerialEntryFrom(cmsObject, calResource);
+        assert entryDateSerial != null;
         String formattedEntryDetails = entryDateSerial.getFormattedEntryDetails();
 
         assertThat(formattedEntryDetails, containsString(TIME_BEGIN));
@@ -192,9 +198,10 @@ public class TestCmsCalendarEntryDateSerial {
         final String DAYS = "2nd Monday";
         final String TIME_ZONE = "CET";
 
-        when(cmsProperty.getValueMap(new HashMap<String, String>())).thenReturn(buildMap("test_monthly_event_at_second_monday_every_two_months"));
+        when(cmsProperty.getValueMap(new HashMap<>())).thenReturn(buildMap("test_monthly_event_at_second_monday_every_two_months"));
 
         entryDateSerial = CmsSerialDateContentBean.getSerialEntryFrom(cmsObject, calResource);
+        assert entryDateSerial != null;
         String formattedEntryDetails = entryDateSerial.getFormattedEntryDetails();
 
         assertThat(formattedEntryDetails, containsString(TIME_BEGIN));
@@ -215,9 +222,10 @@ public class TestCmsCalendarEntryDateSerial {
         final String DAY = "7th";
         final String TIME_ZONE = "CET";
 
-        when(cmsProperty.getValueMap(new HashMap<String, String>())).thenReturn(buildMap("test_yearly_event_on_january_seventh"));
+        when(cmsProperty.getValueMap(new HashMap<>())).thenReturn(buildMap("test_yearly_event_on_january_seventh"));
 
         entryDateSerial = CmsSerialDateContentBean.getSerialEntryFrom(cmsObject, calResource);
+        assert entryDateSerial != null;
         String formattedEntryDetails = entryDateSerial.getFormattedEntryDetails();
 
         assertThat(formattedEntryDetails, containsString(TIME_BEGIN));
@@ -231,13 +239,13 @@ public class TestCmsCalendarEntryDateSerial {
 
     @Test
     public void test_daily_event_repeating_weekdays() {
-//        XXX: Unfortunately this option is broken, this is a placeholder in case it gets fixed in the future.
+        // XXX: Unfortunately this option is broken, this is a placeholder in case it gets fixed in the future.
         System.out.println("option not available");
     }
 
     @Test
     public void test_yearly_event_at_first_sunday_in_march() {
-//        XXX: Unfortunately this option is broken, this is a placeholder in case it gets fixed in the future.
+        // XXX: Unfortunately this option is broken, this is a placeholder in case it gets fixed in the future.
         System.out.println("option not available");
     }
 
@@ -265,13 +273,13 @@ public class TestCmsCalendarEntryDateSerial {
         final String TWO_WEEKS = "2";
         final String MONTHLY = "1";
         final String TWO_MONTHS = "2";
-        final String SUNDAYS = "1";
+//        final String SUNDAYS = "1";
         final String MONDAYS = "2";
         final String TUESDAYS = "3";
         final String WEDNESDAYS = "4";
         final String THURSDAYS = "5";
         final String FRIDAYS = "6";
-        final String SATURDAYS = "7";
+//        final String SATURDAYS = "7";
         final String JANUARY = "0";
         final String TYPE_DAILY = "1";
         final String TYPE_WEEKLY = "2";

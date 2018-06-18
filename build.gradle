@@ -44,15 +44,15 @@ configurations {
 }
 
 configurations.all {
-    transitive = false;
+    transitive = false
 }
 
 configurations.testCompile {
-    transitive = true;
+    transitive = true
 }
 
 configurations.testRuntime {
-    transitive = true;
+    transitive = true
 }
 
 
@@ -60,28 +60,40 @@ configurations.testRuntime {
 apply from: 'dependencies.gradle'
 
 modules_oamp_all.split(',').each{ moduleName ->
-    sourceSets.create(moduleName,{
-        java {
-            srcDir "${moduleName}/src"
-            exclude '**/test/**'
-            exclude '**/client/**'
+    sourceSets.create(moduleName) {
+        sourceSets.main {
+            java {
+                srcDir "${moduleName}/src"
+                exclude '**/test/**'
+                exclude '**/client/**'
+            }
+            resources {
+                srcDir "${moduleName}/resources"
+            }
         }
-        resources.srcDir "${moduleName}/src"
-    });
-    sourceSets[moduleName].compileClasspath=configurations.compile
+    }
+    sourceSets[moduleName].compileClasspath = configurations.compile
     String testSourceSetName = "test" + moduleName.capitalize()
-    sourceSets.create(testSourceSetName,{
-        java {
-            srcDir "${moduleName}/test"
+    sourceSets.create(testSourceSetName) {
+        sourceSets.test {
+            java {
+                srcDir "${moduleName}/test"
+            }
+            resources {
+                srcDir "${moduleName}/test"
+            }
         }
-        resources.srcDir "${moduleName}/test"
-        compileClasspath = sourceSets[moduleName].output
+        def compileClasspath = sourceSets[moduleName].output
         compileClasspath += sourceSets[moduleName].compileClasspath
         compileClasspath += configurations.testCompile
         runtimeClasspath = output + compileClasspath
-    });
+    }
     String testTaskName = testSourceSetName.split('\\.').collect{it.capitalize()}.join().uncapitalize()
     task "$testTaskName" (type: Test, group: "Verification"){
+        doFirst {
+            println "doing first"
+            cleanTest
+        }
         testClassesDir = sourceSets[testSourceSetName].output.classesDir
         classpath = sourceSets[testSourceSetName].runtimeClasspath
     }
