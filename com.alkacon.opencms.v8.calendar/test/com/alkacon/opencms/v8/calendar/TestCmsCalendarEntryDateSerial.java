@@ -33,6 +33,7 @@ public class TestCmsCalendarEntryDateSerial {
 
     @Before
     public void setup() {
+        System.err.println("XXX - Executing something :)");
         cmsObject = mock(CmsObject.class);
         calResource = mock(CmsResource.class);
         cmsProperty = mock(CmsProperty.class);

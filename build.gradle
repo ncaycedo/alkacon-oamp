@@ -2,6 +2,15 @@ plugins {
     id "com.dorongold.task-tree" version "1.3"
 }
 
+plugins {
+    id 'com.gradle.build-scan' version '1.13.4'
+}
+
+buildScan {
+    licenseAgreementUrl = 'https://gradle.com/terms-of-service'
+    licenseAgree = 'yes'
+}
+
 apply plugin: 'java'
 apply plugin: 'maven'
 
@@ -60,40 +69,42 @@ configurations.testRuntime {
 apply from: 'dependencies.gradle'
 
 modules_oamp_all.split(',').each{ moduleName ->
-    sourceSets.create(moduleName) {
-        sourceSets.main {
-            java {
-                srcDir "${moduleName}/src"
-                exclude '**/test/**'
-                exclude '**/client/**'
-            }
-            resources {
-                srcDir "${moduleName}/resources"
-            }
+    sourceSets.create(moduleName,{
+        java {
+            srcDir "${moduleName}/src"
+            exclude '**/test/**'
+            exclude '**/client/**'
         }
-    }
+        resources {
+            srcDir "${moduleName}/resources"
+        }
+    })
     sourceSets[moduleName].compileClasspath = configurations.compile
     String testSourceSetName = "test" + moduleName.capitalize()
-    sourceSets.create(testSourceSetName) {
-        sourceSets.test {
-            java {
-                srcDir "${moduleName}/test"
-            }
-            resources {
-                srcDir "${moduleName}/test"
-            }
+    testSourceSetName = testSourceSetName.split('\\.').collect{it.capitalize()}.join().uncapitalize()
+    sourceSets.create(testSourceSetName,{
+        java {
+            srcDirs = ["${moduleName}/test"]
         }
-        def compileClasspath = sourceSets[moduleName].output
+        resources {
+            srcDirs = ["${moduleName}/test"]
+        }
+        compileClasspath = sourceSets[moduleName].output
         compileClasspath += sourceSets[moduleName].compileClasspath
         compileClasspath += configurations.testCompile
         runtimeClasspath = output + compileClasspath
-    }
-    String testTaskName = testSourceSetName.split('\\.').collect{it.capitalize()}.join().uncapitalize()
+    })
+//    String testTaskName = testSourceSetName.split('\\.').collect{it.capitalize()}.join().uncapitalize()
+    String testTaskName = testSourceSetName
     task "$testTaskName" (type: Test, group: "Verification"){
+//        doFirst {
+//            cleanTest
+//        }
+
         doFirst {
-            println "doing first"
-            cleanTest
+            println "xxx>" + testClassesDir
         }
+        include "**.*"
         testClassesDir = sourceSets[testSourceSetName].output.classesDir
         classpath = sourceSets[testSourceSetName].runtimeClasspath
     }
