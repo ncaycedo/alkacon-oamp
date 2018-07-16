@@ -45,19 +45,9 @@
                 <c:if test="${value.Showtime.toBoolean}">
                     <c:set var="dateType" value="both"/>
                 </c:if>
-                
-                <fmt:formatDate value="${cms:convertDate(calEntry.startDay)}" dateStyle="long" timeStyle="short" type="${dateType}" />
+
                 <c:if test="${not empty calEntry}">
-                        <fmt:formatDate var="shortStartDate" value="${cms:convertDate(calEntry.startDay)}" dateStyle="short" type="date" />
-                        <fmt:formatDate var="shortEndDate" value="${calEntry.endDate.time}" dateStyle="short" type="date" />
-                        <c:if test="${shortStartDate == shortEndDate && value.Showtime.toBoolean}">
-                                <fmt:message key="calendar.detail.date.to" />
-                                <fmt:formatDate value="${calEntry.endDate.time}" timeStyle="short" type="time" />
-                        </c:if>
-                        <c:if test="${shortStartDate != shortEndDate}">
-                                <fmt:message key="calendar.detail.date.to" />
-                                <fmt:formatDate value="${calEntry.endDate.time}" dateStyle="long" timeStyle="short" type="${dateType}" />
-                        </c:if>
+                    <span><% out.println(calEntry.getFormattedEntryDetails()); %></span>
                 </c:if>
             </p>
 

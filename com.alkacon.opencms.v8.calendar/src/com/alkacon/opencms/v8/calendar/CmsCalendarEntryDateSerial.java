@@ -256,7 +256,10 @@ public class CmsCalendarEntryDateSerial extends CmsCalendarEntryDate {
     // XXX: Refactoring!
 
     public String getFormattedEntryDetails() {
-        return getFormattedEventDuration() + "\n" + getFormattedEventType() + "\n" + getFormattedDateBoundaries();
+        String result = getFormattedEventDuration() + "\n" + getFormattedEventType() + "\n" + getFormattedDateBoundaries();
+        if (result.equals(""))
+            result = "No data found.";
+        return result;
     }
 
     /**
