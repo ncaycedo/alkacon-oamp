@@ -15,7 +15,6 @@
 <%
     Log LOG = CmsLog.getLog(this.getClass());
     LOG.debug("Requested detail-serialentry.jsp");
-    LOG.debug("extra line");
 
     // Initialize the CmsCalendarEntry from the detail content of the Content Page
     // and make it available through the "calEntry" page attribute

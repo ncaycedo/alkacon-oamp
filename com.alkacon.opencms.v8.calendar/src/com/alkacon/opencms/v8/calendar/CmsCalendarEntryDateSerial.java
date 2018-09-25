@@ -253,8 +253,6 @@ public class CmsCalendarEntryDateSerial extends CmsCalendarEntryDate {
         }
     }
 
-    // XXX: Refactoring!
-
     public String getFormattedEntryDetails() {
         String result = getFormattedEventDuration() + "\n" + getFormattedEventType() + "\n" + getFormattedDateBoundaries();
         if (result.equals(""))
