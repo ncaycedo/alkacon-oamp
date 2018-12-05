@@ -60,16 +60,7 @@ public class TestCmsCalendarEntryDateSerial {
 
         when(cmsProperty.getValueMap(new HashMap<>())).thenReturn(buildMap("test_daily_event_repeating_everyday"));
 
-        entryDateSerial = CmsSerialDateContentBean.getSerialEntryFrom(cmsObject, calResource);
-        assert entryDateSerial != null;
-        String formattedEntryDetails = entryDateSerial.getFormattedEntryDetails();
-
-        assertThat(formattedEntryDetails, containsString(TIME_BEGIN));
-        assertThat(formattedEntryDetails, containsString(TIME_END));
-        assertThat(formattedEntryDetails, containsString(TIME_ZONE));
-        assertThat(formattedEntryDetails, containsString(FIRST_DAY));
-        assertThat(formattedEntryDetails, containsString(LAST_DAY));
-        assertThat(formattedEntryDetails, containsString(FREQUENCY));
+        assertCalendarEntry(TIME_BEGIN, TIME_END, FIRST_DAY, LAST_DAY, FREQUENCY, TIME_ZONE);
     }
 
     @Test
@@ -104,16 +95,7 @@ public class TestCmsCalendarEntryDateSerial {
 
         when(cmsProperty.getValueMap(new HashMap<>())).thenReturn(buildMap("test_daily_event_repeating_every_two_days"));
 
-        entryDateSerial = CmsSerialDateContentBean.getSerialEntryFrom(cmsObject, calResource);
-        assert entryDateSerial != null;
-        String formattedEntryDetails = entryDateSerial.getFormattedEntryDetails();
-
-        assertThat(formattedEntryDetails, containsString(TIME_BEGIN));
-        assertThat(formattedEntryDetails, containsString(TIME_END));
-        assertThat(formattedEntryDetails, containsString(TIME_ZONE));
-        assertThat(formattedEntryDetails, containsString(FIRST_DAY));
-        assertThat(formattedEntryDetails, containsString(LAST_DAY));
-        assertThat(formattedEntryDetails, containsString(FREQUENCY));
+        assertCalendarEntry(TIME_BEGIN, TIME_END, FIRST_DAY, LAST_DAY, FREQUENCY, TIME_ZONE);
     }
 
     @Test
@@ -177,16 +159,7 @@ public class TestCmsCalendarEntryDateSerial {
 
         when(cmsProperty.getValueMap(new HashMap<>())).thenReturn(buildMap("test_monthly_event_on_seventh_day_every_month"));
 
-        entryDateSerial = CmsSerialDateContentBean.getSerialEntryFrom(cmsObject, calResource);
-        assert entryDateSerial != null;
-        String formattedEntryDetails = entryDateSerial.getFormattedEntryDetails();
-
-        assertThat(formattedEntryDetails, containsString(TIME_BEGIN));
-        assertThat(formattedEntryDetails, containsString(TIME_END));
-        assertThat(formattedEntryDetails, containsString(TIME_ZONE));
-        assertThat(formattedEntryDetails, containsString(FIRST_DAY));
-        assertThat(formattedEntryDetails, containsString(FREQUENCY));
-        assertThat(formattedEntryDetails, containsString(DAYS));
+        assertCalendarEntry(TIME_BEGIN, TIME_END, FIRST_DAY, FREQUENCY, DAYS, TIME_ZONE);
     }
 
     @Test
@@ -200,16 +173,7 @@ public class TestCmsCalendarEntryDateSerial {
 
         when(cmsProperty.getValueMap(new HashMap<>())).thenReturn(buildMap("test_monthly_event_at_second_monday_every_two_months"));
 
-        entryDateSerial = CmsSerialDateContentBean.getSerialEntryFrom(cmsObject, calResource);
-        assert entryDateSerial != null;
-        String formattedEntryDetails = entryDateSerial.getFormattedEntryDetails();
-
-        assertThat(formattedEntryDetails, containsString(TIME_BEGIN));
-        assertThat(formattedEntryDetails, containsString(TIME_END));
-        assertThat(formattedEntryDetails, containsString(TIME_ZONE));
-        assertThat(formattedEntryDetails, containsString(FIRST_DAY));
-        assertThat(formattedEntryDetails, containsString(FREQUENCY));
-        assertThat(formattedEntryDetails, containsString(DAYS));
+        assertCalendarEntry(TIME_BEGIN, TIME_END, FIRST_DAY, FREQUENCY, DAYS, TIME_ZONE);
     }
 
     @Test
@@ -247,6 +211,19 @@ public class TestCmsCalendarEntryDateSerial {
     public void test_yearly_event_at_first_sunday_in_march() {
         // XXX: Unfortunately this option is broken, this is a placeholder in case it gets fixed in the future.
         System.out.println("option not available");
+    }
+
+    private void assertCalendarEntry(String TIME_BEGIN, String TIME_END, String FIRST_DAY, String LAST_DAY, String FREQUENCY, String TIME_ZONE) {
+        entryDateSerial = CmsSerialDateContentBean.getSerialEntryFrom(cmsObject, calResource);
+        assert entryDateSerial != null;
+        String formattedEntryDetails = entryDateSerial.getFormattedEntryDetails();
+
+        assertThat(formattedEntryDetails, containsString(TIME_BEGIN));
+        assertThat(formattedEntryDetails, containsString(TIME_END));
+        assertThat(formattedEntryDetails, containsString(TIME_ZONE));
+        assertThat(formattedEntryDetails, containsString(FIRST_DAY));
+        assertThat(formattedEntryDetails, containsString(LAST_DAY));
+        assertThat(formattedEntryDetails, containsString(FREQUENCY));
     }
 
     private HashMap<String, String> buildMap(String testType) {
