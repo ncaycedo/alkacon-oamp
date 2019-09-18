@@ -35,7 +35,7 @@
     <cms:formatter var="content" val="value">
         <div>
             <%-- Headline --%>  
-            <h1 class="cal_detail_headline">${cms.title}</h1>
+            <h1 class="cal_detail_headline">${content.value.Title}</h1>
 
             <%-- Dates --%>
             <p class="cal_detail_date">

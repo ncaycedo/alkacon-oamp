@@ -12,15 +12,9 @@
     </Jsp>
     <Rank><![CDATA[1000]]></Rank>
     <Match>
-      <Types>
-        <ContainerType><![CDATA[full]]></ContainerType>
-        <ContainerType><![CDATA[onehalf]]></ContainerType>
-        <ContainerType><![CDATA[onethird]]></ContainerType>
-        <ContainerType><![CDATA[twothirds]]></ContainerType>
-        <ContainerType><![CDATA[onequarter]]></ContainerType>
-        <ContainerType><![CDATA[threequarters]]></ContainerType>
-        <ContainerType><![CDATA[contentandlayoutrows]]></ContainerType>
-      </Types>
+      <Width>
+        <Width><![CDATA[-1]]></Width>
+      </Width>
     </Match>
     <Preview>true</Preview>
     <SearchContent>true</SearchContent>
