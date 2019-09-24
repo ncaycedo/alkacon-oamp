@@ -18,7 +18,7 @@ if (paramCount != null) {
 CmsCalendarDisplay calendarBean = new CmsCalendarDisplay(cms);
 
 // initialize the calendar entries to show
-calendarBean.initCalendarEntries();
+calendarBean.initCalendarEntries(cms.getRequestContext().getCurrentProject().isOnlineProject());
 
 // get most current entries
 List entries = calendarBean.getMostCurrentEntries(count);

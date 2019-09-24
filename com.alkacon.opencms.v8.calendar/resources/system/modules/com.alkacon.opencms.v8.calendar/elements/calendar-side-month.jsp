@@ -22,7 +22,7 @@ CmsJspActionElement cms = new CmsJspActionElement(pageContext, request, response
 CmsCalendarMonthBean calendarBean = new CmsCalendarMonthBean(cms);
 
 // initialize the calendar entries to show
-calendarBean.initCalendarEntries();
+calendarBean.initCalendarEntries(cms.getRequestContext().getCurrentProject().isOnlineProject());
 
 // set the Uri of the calendar to the Uri of the container page
 calendarBean.setViewUri((String)pageContext.getAttribute("containerUri"));

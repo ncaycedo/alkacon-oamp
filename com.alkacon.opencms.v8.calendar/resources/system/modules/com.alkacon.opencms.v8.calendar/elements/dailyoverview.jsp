@@ -6,7 +6,7 @@ CmsJspActionElement cms = new CmsJspActionElement(pageContext, request, response
 CmsCalendarDisplay calendarBean = new CmsCalendarDisplay(cms);
 
 // initialize the calendar entries to show
-calendarBean.initCalendarEntries();
+calendarBean.initCalendarEntries(cms.getRequestContext().getCurrentProject().isOnlineProject());
 
 // add the holiday entries
 calendarBean.addHolidays("com.alkacon.opencms.v8.calendar.holidays");

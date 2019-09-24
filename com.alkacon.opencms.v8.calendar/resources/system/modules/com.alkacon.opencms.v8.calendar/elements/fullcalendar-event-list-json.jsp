@@ -41,7 +41,7 @@ CmsCalendarDisplay calendarBean = new CmsCalendarDisplay()
     .setCalendarViewFilePath(pCalendarViewObject)
     .setViewPeriod(CmsCalendarDisplay.PERIOD_MONTH)
     .setUseAjaxLinks(true)
-    .initCalendarEntries()
+    .initCalendarEntries(cms.getRequestContext().getCurrentProject().isOnlineProject())
     .addHolidays("com.alkacon.opencms.v8.calendar.holidays");
 
 // create start and end date from request parameters

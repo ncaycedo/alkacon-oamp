@@ -1024,12 +1024,14 @@ public class CmsCalendarDisplay extends CmsCalendar {
      * 
      *
      * @return this instance, for expressiveness (so that method calls can be chained)
+     * @param isOnline
      */
-    public CmsCalendarDisplay initCalendarEntries() {
+    public CmsCalendarDisplay initCalendarEntries(boolean isOnline) {
+        String solrIndexName = isOnline ? "Solr Online" : "Solr Offline";
 
         try {
             String query = String.format("fq=type:(%s OR %s)&rows=10000000", RESTYPE_ENTRY, RESTYPE_ENTRY_SERIAL);
-            CmsSolrResultList resources = OpenCms.getSearchManager().getIndexSolr("Solr Offline").search(getJsp().getCmsObject(), query);
+            CmsSolrResultList resources = OpenCms.getSearchManager().getIndexSolr(solrIndexName).search(getJsp().getCmsObject(), query);
 
             List<CmsCalendarEntry> calendarEntries = createCalendarEntries(
                     resources,
