@@ -395,7 +395,7 @@
 			<properties>
 				<property type="shared">
 					<name>export</name>
-					<value><![CDATA[true]]></value>
+					<value><![CDATA[false]]></value>
 				</property>
 			</properties>
 			<relations/>
