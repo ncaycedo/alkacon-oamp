@@ -40,6 +40,8 @@ import org.opencms.jsp.CmsJspActionElement;
 import org.opencms.main.CmsException;
 import org.opencms.main.CmsLog;
 import org.opencms.main.OpenCms;
+import org.opencms.search.solr.CmsSolrQuery;
+import org.opencms.util.CmsRequestUtil;
 import org.opencms.util.CmsStringUtil;
 import org.opencms.search.solr.CmsSolrResultList;
 
@@ -1031,7 +1033,9 @@ public class CmsCalendarDisplay extends CmsCalendar {
 
         try {
             String query = String.format("fq=type:(%s OR %s)&rows=10000000", RESTYPE_ENTRY, RESTYPE_ENTRY_SERIAL);
-            CmsSolrResultList resources = OpenCms.getSearchManager().getIndexSolr(solrIndexName).search(getJsp().getCmsObject(), query);
+            CmsSolrQuery cmsSolrQuery = new CmsSolrQuery(null, CmsRequestUtil.createParameterMap(query));
+            CmsSolrResultList resources = OpenCms.getSearchManager().getIndexSolr(solrIndexName)
+                    .search(getJsp().getCmsObject(), cmsSolrQuery, true);
 
             List<CmsCalendarEntry> calendarEntries = createCalendarEntries(
                     resources,
